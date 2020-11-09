@@ -68,12 +68,24 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
+             <Label text="Pfleger:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <font>
+                    <Font name="System Bold" size="13.0"/>
+                </font>
+             </Label>
+             <Label text="Pfleger Telefonnummer:" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <font>
+                    <Font name="System Bold" size="13.0"/>
+                </font>
+             </Label>
             <TextField fx:id="txtBegin" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             <TextField fx:id="txtEnd" maxWidth="192.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="txtDescription" GridPane.columnIndex="3" GridPane.rowIndex="4" />
             <DatePicker fx:id="datepicker" prefWidth="192.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label fx:id="lblPatientName" text="Name" GridPane.columnIndex="1" />
             <Label fx:id="lblCarelevel" text="Pflegestufe" GridPane.columnIndex="3" />
+             <Label fx:id="lblCaregiverName" text="Pfleger Name" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+             <Label fx:id="lblCaregiverTelephoneNumber" text="Pfleger Telefonnummer" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
          </children>
       </GridPane>
       <HBox layoutX="298.0" layoutY="237.0" spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="50.0">

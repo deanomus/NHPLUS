@@ -41,11 +41,9 @@ public class AllTreatmentController {
     @FXML
     private Button btnDelete;
 
-    private ObservableList<Treatment> tableviewContent =
-            FXCollections.observableArrayList();
+    private ObservableList<Treatment> tableviewContent = FXCollections.observableArrayList();
     private TreatmentDAO dao;
-    private ObservableList<String> myComboBoxData =
-            FXCollections.observableArrayList();
+    private ObservableList<String> myComboBoxData = FXCollections.observableArrayList();
     private ArrayList<Patient> patientList;
     private Main main;
 
@@ -83,7 +81,6 @@ public class AllTreatmentController {
         PatientDAO dao = DAOFactory.getDAOFactory().createPatientDAO();
         try {
             patientList = (ArrayList<Patient>) dao.readAll();
-            this.myComboBoxData.add("alle");
             for (Patient patient: patientList) {
                 this.myComboBoxData.add(patient.getSurname());
             }

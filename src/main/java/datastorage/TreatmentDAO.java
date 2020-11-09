@@ -91,4 +91,9 @@ public class TreatmentDAO extends DAOimp<Treatment> {
         Statement st = conn.createStatement();
         st.executeUpdate(String.format("Delete FROM treatment WHERE pid= %d", key));
     }
+
+    public void deleteByCid(int key) throws SQLException {
+        Statement st = conn.createStatement();
+        st.executeUpdate(String.format("Delete FROM treatment WHERE cid= %d", key));
+    }
 }

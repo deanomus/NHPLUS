@@ -71,6 +71,7 @@
       <HBox layoutX="298.0" layoutY="237.0" spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="50.0">
          <children>
             <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#handleAdd" text="Anlegen" />
+             <ComboBox fx:id="comboBox" minWidth="160.0" onAction="#handleComboBox" prefWidth="200.0" />
             <Button fx:id="cancelButton" layoutX="298.0" layoutY="237.0" mnemonicParsing="false" onAction="#handleCancel" text="Abbruch" />
          </children>
       </HBox>
