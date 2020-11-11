@@ -90,7 +90,7 @@ public class AllPatientController {
     }
 
     /**
-     * handles new firstname value
+     * handles new firstname of patient value
      * @param event event including the value that a user entered into the cell
      */
     @FXML
@@ -100,7 +100,7 @@ public class AllPatientController {
     }
 
     /**
-     * handles new surname value
+     * handles new surname of patient value
      * @param event event including the value that a user entered into the cell
      */
     @FXML
