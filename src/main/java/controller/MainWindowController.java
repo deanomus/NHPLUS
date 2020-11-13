@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 
@@ -10,9 +11,17 @@ public class MainWindowController {
 
     @FXML
     private BorderPane mainBorderPane;
+    @FXML
+    private Button btnShowAllPatients;
+    @FXML
+    private Button btnShowAllCaregivers;
+    @FXML
+    private Button btnShowAllTreatments;
+    @FXML
+    private Button btnShowLoginWindow;
 
     @FXML
-    private void handleShowAllPatient(ActionEvent e) {
+    private void handleShowAllPatients(ActionEvent e) {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/AllPatientView.fxml"));
         try {
             mainBorderPane.setCenter(loader.load());

@@ -28,6 +28,9 @@ public class LoginController {
     private Main main;
     private Stage stage;
 
+    public String username = "user";
+    public String password = "pw";
+
     public void initialize(Stage stage) {
         this.stage = stage;
         this.main = main;
@@ -40,7 +43,11 @@ public class LoginController {
 
     @FXML
     public void handleLogin() {
+        inputOkay();
+    }
 
+    public boolean inputOkay() {
+        return this.txtUsername.getText().equals(username) && this.txtPassword.getText().equals(password);
     }
 
     public void loginWindow() {

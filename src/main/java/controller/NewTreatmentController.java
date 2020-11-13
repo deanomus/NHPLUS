@@ -35,6 +35,7 @@ public class NewTreatmentController {
     private DatePicker datepicker;
     @FXML
     private ComboBox<String> comboBox;
+
     private ObservableList<String> caregiverComboBoxData = FXCollections.observableArrayList();
     private ArrayList<Caregiver> caregiverList;
 
@@ -48,9 +49,8 @@ public class NewTreatmentController {
         this.patient = patient;
         this.caregiver = caregiver;
         this.stage = stage;
-        //comboBox.setItems(caregiverComboBoxData);
-        //comboBox.getSelectionModel().select(0);
         createComboBoxData();
+        comboBox.setItems(caregiverComboBoxData);
         showPatientData();
     }
 
@@ -92,7 +92,6 @@ public class NewTreatmentController {
         CaregiverDAO dao = DAOFactory.getDAOFactory().createCaregiverDAO();
         try {
             caregiverList = (ArrayList<Caregiver>) dao.readAll();
-            this.caregiverComboBoxData.add("alle");
             for (Caregiver caregiver : caregiverList) {
                 this.caregiverComboBoxData.add(caregiver.getSurname() + ", " + caregiver.getFirstName());
             }
@@ -101,6 +100,7 @@ public class NewTreatmentController {
         }
     }
 
+    @FXML
     public void handleComboBox() {
         String p = this.comboBox.getSelectionModel().getSelectedItem();
         List<Caregiver> allCaregivers;
