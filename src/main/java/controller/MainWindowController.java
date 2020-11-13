@@ -5,10 +5,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+
+import java.awt.*;
 import java.io.IOException;
 
 public class MainWindowController {
 
+    @FXML
+    private Button showPatients;
     @FXML
     private BorderPane mainBorderPane;
     @FXML

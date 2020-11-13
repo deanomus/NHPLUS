@@ -8,11 +8,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import utils.HashMD5;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 public class LoginController {
 
@@ -28,8 +31,8 @@ public class LoginController {
     private Main main;
     private Stage stage;
 
-    public String username = "user";
-    public String password = "pw";
+    public String username;
+    public String password;
 
     public void initialize(Stage stage) {
         this.stage = stage;
@@ -43,12 +46,9 @@ public class LoginController {
 
     @FXML
     public void handleLogin() {
-        inputOkay();
+
     }
 
-    public boolean inputOkay() {
-        return this.txtUsername.getText().equals(username) && this.txtPassword.getText().equals(password);
-    }
 
     public void loginWindow() {
         try {
@@ -76,5 +76,11 @@ public class LoginController {
             // TODO Auto-generated catch block
             exception.printStackTrace();
         }
+    }
+
+    public void loginClicked(MouseEvent mouseEvent) throws NoSuchAlgorithmException {
+        username = txtUsername.getText();
+        password = txtPassword.getText();
+        String hashedPassword = HashMD5.HashPassword(password);
     }
 }
