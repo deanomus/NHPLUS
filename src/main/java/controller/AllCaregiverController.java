@@ -32,6 +32,8 @@ public class AllCaregiverController {
     private TableColumn<Caregiver, String> colSurname;
     @FXML
     private TableColumn<Caregiver, String> colTelephoneNumber;
+    @FXML
+    private TableColumn<Caregiver, String> colPassword;
 
     @FXML
     Button btnDelete;
@@ -43,6 +45,8 @@ public class AllCaregiverController {
     TextField txtSurname;
     @FXML
     TextField txtTelephoneNumber;
+    @FXML
+    TextField txtPassword;
 
     private ObservableList<Caregiver> tableviewContent = FXCollections.observableArrayList();
     private CaregiverDAO dao;
@@ -69,6 +73,7 @@ public class AllCaregiverController {
 
     /**
      * handles new firstname of caregiver value
+     *
      * @param event event including the value that a user entered into the cell
      */
     @FXML
@@ -79,6 +84,7 @@ public class AllCaregiverController {
 
     /**
      * handles new surname of caregiver value
+     *
      * @param event event including the value that a user entered into the cell
      */
     @FXML
@@ -89,6 +95,7 @@ public class AllCaregiverController {
 
     /**
      * handles new telephone number value
+     *
      * @param event event including the value that a user entered into the cell
      */
     @FXML
@@ -99,6 +106,7 @@ public class AllCaregiverController {
 
     /**
      * updates a caregiver by calling the update-Method in the {@link CaregiverDAO}
+     *
      * @param t row to be updated by the user (includes the caregiver)
      */
     private void doUpdate(TableColumn.CellEditEvent<Caregiver, String> t) {
@@ -148,8 +156,9 @@ public class AllCaregiverController {
         String firstname = this.txtFirstname.getText();
         String surname = this.txtSurname.getText();
         String telephoneNumber = this.txtTelephoneNumber.getText();
+        String password = this.txtPassword.getText();
         try {
-            Caregiver c = new Caregiver(firstname, surname, telephoneNumber);
+            Caregiver c = new Caregiver(firstname, surname, telephoneNumber, password);
             dao.create(c);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -165,5 +174,6 @@ public class AllCaregiverController {
         this.txtFirstname.clear();
         this.txtSurname.clear();
         this.txtTelephoneNumber.clear();
+        this.txtPassword.clear();
     }
 }

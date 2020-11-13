@@ -16,7 +16,7 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
     @Override
     protected String getCreateStatementString(Caregiver caregiver) {
         return String.format("INSERT INTO caregiver (firstname, surname, telephoneNumber) VALUES ('%s', '%s', '%s')",
-        caregiver.getFirstName(), caregiver.getSurname(), caregiver.getTelephoneNumber());
+                caregiver.getFirstName(), caregiver.getSurname(), caregiver.getTelephoneNumber());
     }
 
     @Override
@@ -27,7 +27,7 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
     @Override
     protected Caregiver getInstanceFromResultSet(ResultSet result) throws SQLException {
         Caregiver c = null;
-        c = new Caregiver(result.getInt(1), result.getString(2), result.getString(3), result.getString(4));
+        c = new Caregiver(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5));
         return c;
     }
 
@@ -41,7 +41,7 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
         Caregiver c = null;
         while (result.next()) {
             c = new Caregiver(result.getInt(1), result.getString(2),
-                    result.getString(3), result.getString(4));
+                    result.getString(3), result.getString(4), result.getString(5));
             list.add(c);
         }
         return list;
@@ -49,8 +49,8 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
 
     @Override
     protected String getUpdateStatementString(Caregiver caregiver) {
-        return String.format("UPDATE caregiver SET firstname = '%s', surname = '%s', telephoneNumber = '%s' WHERE cid = %d",
-                caregiver.getFirstName(), caregiver.getSurname(), caregiver.getTelephoneNumber(), caregiver.getCid());
+        return String.format("UPDATE caregiver SET firstname = '%s', surname = '%s', telephoneNumber = '%s',password = '%s' WHERE cid = %d",
+                caregiver.getFirstName(), caregiver.getSurname(), caregiver.getTelephoneNumber(), caregiver.getPassword(), caregiver.getCid());
     }
 
     @Override

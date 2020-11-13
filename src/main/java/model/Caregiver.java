@@ -6,26 +6,32 @@ package model;
 public class Caregiver extends Person {
     private long cid;
     private String telephoneNumber;
+    private String password;
 
     /**
      * constructs a caregiver from the given params.
+     *
      * @param firstName
      * @param surname
      * @param telephoneNumber
+     * @param password
      */
-    public Caregiver(String firstName, String surname, String telephoneNumber) {
+    public Caregiver(String firstName, String surname, String telephoneNumber, String password) {
         super(firstName, surname);
         this.telephoneNumber = telephoneNumber;
+        this.password = password;
     }
 
     /**
      * constructs a caregiver from the given params.
+     *
      * @param cid
      * @param firstName
      * @param surname
      * @param telephoneNumber
+     * @param password
      */
-    public Caregiver(long cid, String firstName, String surname, String telephoneNumber) {
+    public Caregiver(long cid, String firstName, String surname, String telephoneNumber, String password) {
         super(firstName, surname);
         this.cid = cid;
         this.telephoneNumber = telephoneNumber;
@@ -43,6 +49,10 @@ public class Caregiver extends Person {
      */
     public String getTelephoneNumber() {
         return telephoneNumber;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     /**
