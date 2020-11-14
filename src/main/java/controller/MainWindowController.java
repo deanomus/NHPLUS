@@ -66,5 +66,18 @@ public class MainWindowController {
             ex.printStackTrace();
         }
         LoginController controller = loader.getController();
+        controller.setMainWindowController(this);
+    }
+
+    public Button getBtnShowAllPatients() {
+        return btnShowAllPatients;
+    }
+
+    public Button getBtnShowAllCaregivers() {
+        return btnShowAllCaregivers;
+    }
+
+    public Button getBtnShowAllTreatments() {
+        return btnShowAllTreatments;
     }
 }

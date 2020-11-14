@@ -2,6 +2,7 @@ package datastorage;
 
 import model.Caregiver;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,13 +16,22 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
 
     @Override
     protected String getCreateStatementString(Caregiver caregiver) {
-        return String.format("INSERT INTO caregiver (firstname, surname, telephoneNumber) VALUES ('%s', '%s', '%s')",
-                caregiver.getFirstName(), caregiver.getSurname(), caregiver.getTelephoneNumber());
+        try {
+            return String.format("INSERT INTO caregiver (firstname, surname, telephoneNumber, password) VALUES ('%s', '%s','%s', '%s')",
+                    caregiver.getFirstName(), caregiver.getSurname(), caregiver.getTelephoneNumber(), utils.HashMD5.HashPassword(caregiver.getPassword()));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
     protected String getReadByIDStatementString(int key) {
         return String.format("SELECT * FROM caregiver WHERE cid = %d", key);
+    }
+
+    public static String getPasswordByUsernameString(String username) {
+        return String.format("SELECT password FROM caregiver WHERE surname = %s", username);
     }
 
     @Override
@@ -49,7 +59,7 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
 
     @Override
     protected String getUpdateStatementString(Caregiver caregiver) {
-        return String.format("UPDATE caregiver SET firstname = '%s', surname = '%s', telephoneNumber = '%s',password = '%s' WHERE cid = %d",
+        return String.format("UPDATE caregiver SET firstname = '%s', surname = '%s', telephoneNumber = '%s', password = '%s' WHERE cid = %d",
                 caregiver.getFirstName(), caregiver.getSurname(), caregiver.getTelephoneNumber(), caregiver.getPassword(), caregiver.getCid());
     }
 

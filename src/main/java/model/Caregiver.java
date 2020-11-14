@@ -35,6 +35,7 @@ public class Caregiver extends Person {
         super(firstName, surname);
         this.cid = cid;
         this.telephoneNumber = telephoneNumber;
+        this.password = password;
     }
 
     /**
@@ -51,6 +52,9 @@ public class Caregiver extends Person {
         return telephoneNumber;
     }
 
+    /**
+     * @return password of caregiver
+     */
     public String getPassword() {
         return password;
     }

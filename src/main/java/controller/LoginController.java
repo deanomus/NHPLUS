@@ -1,21 +1,23 @@
 package controller;
 
-import datastorage.ConnectionBuilder;
-import javafx.application.Platform;
-import javafx.event.EventHandler;
+import datastorage.CaregiverDAO;
+import datastorage.DAOFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
+import model.Caregiver;
 import utils.HashMD5;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import java.util.List;
 
 public class LoginController {
 
@@ -24,24 +26,26 @@ public class LoginController {
     @FXML
     private TextField txtPassword;
     @FXML
+    private Label txtResult;
+    @FXML
     private Button btnLogin;
     @FXML
     private Button btnCancel;
 
     private Main main;
-    private Stage stage;
+    private CaregiverDAO cDao;
+    public MainWindowController mainWindowController;
 
-    public String username;
-    public String password;
-
-    public void initialize(Stage stage) {
-        this.stage = stage;
+    /**
+     * Initializes the corresponding fields. Is called as soon as the corresponding FXML file is to be displayed.
+     */
+    public void initialize() {
         this.main = main;
+        this.cDao = DAOFactory.getDAOFactory().createCaregiverDAO();
     }
 
     @FXML
     public void handleCancel() {
-        stage.close();
     }
 
     @FXML
@@ -54,24 +58,14 @@ public class LoginController {
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/LoginView.fxml"));
             BorderPane pane = loader.load();
-
             Scene scene = new Scene(pane);
             Stage stage = new Stage();
             LoginController controller = loader.getController();
-            controller.initialize(stage);
-            this.stage.setTitle("Login");
-            this.stage.setScene(scene);
-            this.stage.setResizable(false);
-            this.stage.show();
 
-            this.stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent windowEvent) {
-                    ConnectionBuilder.closeConnection();
-                    Platform.exit();
-                    System.exit(0);
-                }
-            });
+            stage.setTitle("Login");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
         } catch (IOException exception) {
             // TODO Auto-generated catch block
             exception.printStackTrace();
@@ -79,8 +73,49 @@ public class LoginController {
     }
 
     public void loginClicked(MouseEvent mouseEvent) throws NoSuchAlgorithmException {
-        username = txtUsername.getText();
-        password = txtPassword.getText();
-        String hashedPassword = HashMD5.HashPassword(password);
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
+        if (username != null && password != null) {
+            String hashedPassword = HashMD5.HashPassword(password);
+            if (CheckLogin(username, hashedPassword)) {
+                txtResult.setText("Login erfolgreich.");
+                disableMenuButtons();
+            } else {
+                txtResult.setText("Username/ID oder Passwort nicht korrekt");
+            }
+        } else {
+            txtResult.setText("Login fehlgeschlagen.");
+        }
+    }
+
+    private void disableMenuButtons() {
+        mainWindowController.getBtnShowAllCaregivers().setDisable(false);
+        mainWindowController.getBtnShowAllPatients().setDisable(false);
+        mainWindowController.getBtnShowAllTreatments().setDisable(false);
+    }
+
+    private boolean CheckLogin(String username, String hashedPassword) {
+        List<Caregiver> allCaregiver = null;
+
+        try {
+            allCaregiver = cDao.readAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (allCaregiver != null) {
+            for (Caregiver caregiver : allCaregiver) {
+                if (caregiver.getSurname().equals(username)) {
+                    if (caregiver.getPassword().equals(hashedPassword)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public void setMainWindowController(MainWindowController mainWindowController) {
+        this.mainWindowController = mainWindowController;
     }
 }
