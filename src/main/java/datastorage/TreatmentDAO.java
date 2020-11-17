@@ -119,7 +119,7 @@ public class TreatmentDAO extends DAOimp<Treatment> {
 
     /**
      * @param pid
-     * @return
+     * @return <code>List</code>
      * @throws SQLException
      */
     public List<Treatment> readTreatmentsByPid(long pid) throws SQLException {
@@ -133,7 +133,7 @@ public class TreatmentDAO extends DAOimp<Treatment> {
 
     /**
      * @param pid
-     * @return
+     * @return <code>String</code> with the generated SQL
      */
     private String getReadAllTreatmentsOfOnePatientByPid(long pid){
         return String.format("SELECT * FROM treatment WHERE pid = %d", pid);

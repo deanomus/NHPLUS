@@ -9,6 +9,9 @@ import javafx.scene.layout.BorderPane;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+ * The <code>MainWindowController</code> contains the entire logic of the mainWindow view.
+ */
 public class MainWindowController {
 
     @FXML

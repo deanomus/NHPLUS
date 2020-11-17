@@ -19,6 +19,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The <code>NewTreatmentController</code> contains the entire logic of the treatment view when creating a new treatment.
+ */
 public class NewTreatmentController {
     @FXML
     private Label lblSurname;

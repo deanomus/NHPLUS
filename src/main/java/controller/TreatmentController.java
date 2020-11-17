@@ -15,6 +15,9 @@ import utils.DateConverter;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+/**
+ * The <code>TreatmentController</code> contains the entire view of the logic of the treatment view when editing a treatment.
+ */
 public class TreatmentController {
     @FXML
     private Label lblPatientName;

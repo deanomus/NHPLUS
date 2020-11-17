@@ -3,22 +3,19 @@ package controller;
 import datastorage.CaregiverDAO;
 import datastorage.DAOFactory;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import model.Caregiver;
 import utils.HashMD5;
-
-import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * The <code>LoginController</code> contains the entire logic of the login view.
+ */
 public class LoginController {
 
     @FXML
