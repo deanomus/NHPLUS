@@ -8,12 +8,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Implements the Interface <code>DAOImp</code>. Overrides methods to generate specific caregiver-SQL-queries.
+ */
 public class CaregiverDAO extends DAOimp<Caregiver> {
 
+    /**
+     * constructs Object. Calls the Constructor from <code>DAOImp</code> to store the connection.
+     * @param conn
+     */
     public CaregiverDAO(Connection conn) {
         super(conn);
     }
 
+    /**
+     * generates a <code>INSERT INTO</code>-Statement for a given caregiver
+     * @param caregiver for which a specific INSERT INTO is to be created
+     * @return <code>String</code> with the generated SQL.
+     */
     @Override
     protected String getCreateStatementString(Caregiver caregiver) {
         try {
@@ -25,15 +37,22 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
         return null;
     }
 
+    /**
+     * generates a <code>SELECT</code>-Statement for a given key
+     * @param key for which a specific SELECT is to be created
+     * @return <code>String</code> with the generated SQL
+     */
     @Override
     protected String getReadByIDStatementString(int key) {
         return String.format("SELECT * FROM caregiver WHERE cid = %d", key);
     }
 
-    public static String getPasswordByUsernameString(String username) {
-        return String.format("SELECT password FROM caregiver WHERE surname = %s", username);
-    }
-
+    /**
+     * maps a <code>ResultSet</code> to a <code>Caregiver</code>
+     * @param result ResultSet with a single row. Columns will be mapped to a caregiver-object.
+     * @return caregiver with the data from the resultSet.
+     * @throws SQLException
+     */
     @Override
     protected Caregiver getInstanceFromResultSet(ResultSet result) throws SQLException {
         Caregiver c = null;
@@ -41,11 +60,21 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
         return c;
     }
 
+    /**
+     * generates a <code>SELECT</code>-Statement for all caregivers.
+     * @return <code>String</code> with the generated SQL.
+     */
     @Override
     protected String getReadAllStatementString() {
         return "SELECT * FROM caregiver";
     }
 
+    /**
+     * maps a <code>ResultSet</code> to a <code>Caregiver-List</code>
+     * @param result ResultSet with a multiple rows. Data will be mapped to caregiver-object.
+     * @return ArrayList with caregivers from the resultSet.
+     * @throws SQLException
+     */
     protected ArrayList<Caregiver> getListFromResultSet(ResultSet result) throws SQLException {
         ArrayList<Caregiver> list = new ArrayList<Caregiver>();
         Caregiver c = null;
@@ -57,12 +86,22 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
         return list;
     }
 
+    /**
+     * generates a <code>UPDATE</code>-Statement for a given caregiver
+     * @param caregiver for which a specific update is to be created
+     * @return <code>String</code> with the generated SQL.
+     */
     @Override
     protected String getUpdateStatementString(Caregiver caregiver) {
         return String.format("UPDATE caregiver SET firstname = '%s', surname = '%s', telephoneNumber = '%s', password = '%s' WHERE cid = %d",
                 caregiver.getFirstName(), caregiver.getSurname(), caregiver.getTelephoneNumber(), caregiver.getPassword(), caregiver.getCid());
     }
 
+    /**
+     * generates a <code>DELETE</code>-Statement for a given key
+     * @param key for which a specific DELETE is to be created
+     * @return <code>String</code> with the generated SQL.
+     */
     @Override
     protected String getDeleteStatementString(int key) {
         return String.format("Delete FROM caregiver WHERE cid=%d", key);

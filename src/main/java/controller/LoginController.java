@@ -77,9 +77,9 @@ public class LoginController {
         String password = txtPassword.getText();
         if (username != null && password != null) {
             String hashedPassword = HashMD5.HashPassword(password);
-            if (CheckLogin(username, hashedPassword)) {
+            if (checkLogin(username, hashedPassword)) {
                 txtResult.setText("Login erfolgreich.");
-                disableMenuButtons();
+                enableMenuButtons();
             } else {
                 txtResult.setText("Username/ID oder Passwort nicht korrekt");
             }
@@ -88,13 +88,13 @@ public class LoginController {
         }
     }
 
-    private void disableMenuButtons() {
+    private void enableMenuButtons() {
         mainWindowController.getBtnShowAllCaregivers().setDisable(false);
         mainWindowController.getBtnShowAllPatients().setDisable(false);
         mainWindowController.getBtnShowAllTreatments().setDisable(false);
     }
 
-    private boolean CheckLogin(String username, String hashedPassword) {
+    private boolean checkLogin(String username, String hashedPassword) {
         List<Caregiver> allCaregiver = null;
 
         try {
