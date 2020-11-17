@@ -44,7 +44,7 @@ public class NewTreatmentController {
     private ArrayList<Caregiver> caregiverList;
 
     private AllTreatmentController controller;
-    private Caregiver caregiver;
+    private String caregiver;
     private Patient patient;
     private Stage stage;
 
@@ -77,8 +77,9 @@ public class NewTreatmentController {
         LocalTime end = DateConverter.convertStringToLocalTime(txtEnd.getText());
         String description = txtDescription.getText();
         String remarks = taRemarks.getText();
+        caregiver = comboBox.getValue();
         Treatment treatment = new Treatment(patient.getPid(), date,
-                begin, end, description, remarks);
+                begin, end, description, remarks, caregiver);
         createTreatment(treatment);
         controller.readAllAndShowInTableView();
         stage.close();

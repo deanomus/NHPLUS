@@ -77,11 +77,11 @@ public class TreatmentController {
         this.lblPatientName.setText(patient.getSurname() + ", " + patient.getFirstName());
         this.lblCarelevel.setText(patient.getCareLevel());
         if (this.caregiver != null) {
-            this.lblCaregiverName.setText(caregiver.getSurname() + ", " + caregiver.getFirstName());
+            this.lblCaregiverName.setText(treatment.getCaregiver());
             this.lblCaregiverTelephoneNumber.setText(caregiver.getTelephoneNumber());
         } else {
             this.lblCaregiverName.setText("Pfleger nicht zugewiesen");
-            this.lblCaregiverTelephoneNumber.setText("Pfleger nicht zugewiesen");
+            this.lblCaregiverTelephoneNumber.setText("");
         }
         LocalDate date = DateConverter.convertStringToLocalDate(treatment.getDate());
         this.datepicker.setValue(date);

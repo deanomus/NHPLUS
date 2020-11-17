@@ -1,6 +1,7 @@
 package model;
 
 import utils.DateConverter;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -15,29 +16,34 @@ public class Treatment {
     private LocalTime end;
     private String description;
     private String remarks;
+    private String caregiver;
 
 
     /**
      * constructs a treatment from the given params.
+     *
      * @param pid
      * @param date
      * @param begin
      * @param end
      * @param description
      * @param remarks
+     * @param caregiver
      */
     public Treatment(long pid, LocalDate date, LocalTime begin,
-                     LocalTime end, String description, String remarks) {
+                     LocalTime end, String description, String remarks, String caregiver) {
         this.pid = pid;
         this.date = date;
         this.begin = begin;
         this.end = end;
         this.description = description;
         this.remarks = remarks;
+        this.caregiver = caregiver;
     }
 
     /**
      * constructs a treatment from the given params.
+     *
      * @param tid
      * @param pid
      * @param date
@@ -45,9 +51,10 @@ public class Treatment {
      * @param end
      * @param description
      * @param remarks
+     * @param caregiver
      */
     public Treatment(long tid, long pid, LocalDate date, LocalTime begin,
-                     LocalTime end, String description, String remarks) {
+                     LocalTime end, String description, String remarks, String caregiver) {
         this.tid = tid;
         this.pid = pid;
         this.date = date;
@@ -56,6 +63,7 @@ public class Treatment {
         this.end = end;
         this.description = description;
         this.remarks = remarks;
+        this.caregiver = caregiver;
     }
 
     /**
@@ -94,7 +102,15 @@ public class Treatment {
     }
 
     /**
+     * @return caregiver
+     */
+    public String getCaregiver() {
+        return caregiver;
+    }
+
+    /**
      * convert given param to a localDate and store as new <code>s_date</code>
+     *
      * @param s_date as string in the following format: YYYY-MM-DD
      */
     public void setDate(String s_date) {
@@ -104,6 +120,7 @@ public class Treatment {
 
     /**
      * convert given param to a localTime and store as new <code>begin</code>
+     *
      * @param begin as string in the following format: HH-MM
      */
     public void setBegin(String begin) {
@@ -113,6 +130,7 @@ public class Treatment {
 
     /**
      * convert given param to a localTime and store as new <code>end</code>
+     *
      * @param end as string in the following format: HH-MM
      */
     public void setEnd(String end) {
@@ -158,6 +176,7 @@ public class Treatment {
                 "\nBegin: " + this.begin +
                 "\nEnd: " + this.end +
                 "\nDescription: " + this.description +
-                "\nRemarks: " + this.remarks + "\n";
+                "\nRemarks: " + this.remarks +
+                "\nCaregiver: " + this.caregiver + "\n";
     }
 }
