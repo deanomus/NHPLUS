@@ -50,3 +50,27 @@ Wird das Open JDK verwendet, werden JavaFX-Abhängigkeiten nicht importiert. Die
 - Benutzername: SA
 - Passwort: SA
 - Bitte nicht in die Datenbank schauen, während die Applikation läuft. Das sorgt leider für einen Lock, der erst wieder verschwindet, wenn IntelliJ neugestartet wird!
+
+
+## Protokoll zu den Testfällen
+
+- Der Nutzer kann das Pflegermenü über die Navigationsleiste links im MainWindow erreichen
+- Dem Pfleger kann ein Vorname, Nachname, eine Telefonnummer und Passwort zugewiesen werden
+- Der Vorname, Nachname und die Telefonnummer werden in der Tabelle angezeigt, das Passwort nicht
+- Die Daten der Pfleger können nur von Pflegern eingesehen und manipuliert werden, da nur Pfleger die Möglichkeit haben sich anzumelden und so den Zugriff auf die weiteren Menüs freizuschalten
+
+- Wenn der Nutzer auf eine Behandlung klickt, öffnet sich das Behandlungsfenster. Hier können die Daten manipuliert werden.
+- Im Behandlungsfenster soll der Pfleger mit Vor- und Nachnamen, sowie Telefonnummer angezeigt werden. Mit dem aktuellen Build werden die individuellen Daten des ausgewählten Pflegers angezeigt, die Telefonnummer fehlt noch
+
+- Beim Anlegen einer neuen Behandlung kann der Nutzer über eine ComboBox einen Pfleger auswählen
+
+##Passwörter für Pfleger
+
+  Pflegername       | Passwort
+  
+- Sebastian Vettel  | Ferrari
+- Max Verstappen    | RedBull
+- Valtteri Bottas   | Mercedes
+- Lando Norris      | McLaren
+- George Russell    | Williams
+- Vorname Nachname  | Passwort
