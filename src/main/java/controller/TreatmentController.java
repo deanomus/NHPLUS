@@ -45,9 +45,16 @@ public class TreatmentController {
     private Caregiver caregiver;
     private Treatment treatment;
 
+    /**
+     * Initializes thr controller for the treatment window
+     *
+     * @param controller
+     * @param stage
+     * @param treatment
+     */
     public void initializeController(AllTreatmentController controller, Stage stage, Treatment treatment) {
         this.stage = stage;
-        this.controller= controller;
+        this.controller = controller;
         PatientDAO pDao = DAOFactory.getDAOFactory().createPatientDAO();
         CaregiverDAO cDao = DAOFactory.getDAOFactory().createCaregiverDAO();
         try {
@@ -60,7 +67,10 @@ public class TreatmentController {
         }
     }
 
-    private void showData(){
+    /**
+     * shows all caregiver data in a table
+     */
+    private void showData() {
         this.lblPatientName.setText(patient.getSurname() + ", " + patient.getFirstName());
         this.lblCarelevel.setText(patient.getCareLevel());
         if (this.caregiver != null) {
@@ -78,8 +88,11 @@ public class TreatmentController {
         this.taRemarks.setText(this.treatment.getRemarks());
     }
 
+    /**
+     * handles the change of data
+     */
     @FXML
-    public void handleChange(){
+    public void handleChange() {
         this.treatment.setDate(this.datepicker.getValue().toString());
         this.treatment.setBegin(txtBegin.getText());
         this.treatment.setEnd(txtEnd.getText());
@@ -90,7 +103,7 @@ public class TreatmentController {
         stage.close();
     }
 
-    private void doUpdate(){
+    private void doUpdate() {
         TreatmentDAO dao = DAOFactory.getDAOFactory().createTreatmentDAO();
         try {
             dao.update(treatment);
@@ -99,8 +112,11 @@ public class TreatmentController {
         }
     }
 
+    /**
+     * handles the button click event of cancel button
+     */
     @FXML
-    public void handleCancel(){
+    public void handleCancel() {
         stage.close();
     }
 }

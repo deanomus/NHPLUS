@@ -12,6 +12,7 @@ import model.Caregiver;
 import model.Patient;
 import model.Treatment;
 import utils.DateConverter;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -45,7 +46,7 @@ public class NewTreatmentController {
     private Stage stage;
 
     public void initialize(AllTreatmentController controller, Stage stage, Patient patient) {
-        this.controller= controller;
+        this.controller = controller;
         this.patient = patient;
         this.caregiver = caregiver;
         this.stage = stage;
@@ -54,13 +55,19 @@ public class NewTreatmentController {
         showPatientData();
     }
 
-    private void showPatientData(){
+    /**
+     * Shows the data of selected patient
+     */
+    private void showPatientData() {
         this.lblFirstname.setText(patient.getFirstName());
         this.lblSurname.setText(patient.getSurname());
     }
 
+    /**
+     * handles when a new treatment is added
+     */
     @FXML
-    public void handleAdd(){
+    public void handleAdd() {
         LocalDate date = this.datepicker.getValue();
         String s_begin = txtBegin.getText();
         LocalTime begin = DateConverter.convertStringToLocalTime(txtBegin.getText());
@@ -74,6 +81,11 @@ public class NewTreatmentController {
         stage.close();
     }
 
+    /**
+     * creates the new treatment
+     *
+     * @param treatment
+     */
     private void createTreatment(Treatment treatment) {
         TreatmentDAO dao = DAOFactory.getDAOFactory().createTreatmentDAO();
         try {
@@ -83,11 +95,17 @@ public class NewTreatmentController {
         }
     }
 
+    /**
+     * handles the button click event of cancel button
+     */
     @FXML
-    public void handleCancel(){
+    public void handleCancel() {
         stage.close();
     }
 
+    /**
+     * adds the correct caregiver data to the combobox
+     */
     private void createComboBoxData() {
         CaregiverDAO dao = DAOFactory.getDAOFactory().createCaregiverDAO();
         try {
@@ -100,6 +118,9 @@ public class NewTreatmentController {
         }
     }
 
+    /**
+     * handles the usage of the combobox
+     */
     @FXML
     public void handleComboBox() {
         String p = this.comboBox.getSelectionModel().getSelectedItem();
@@ -107,8 +128,14 @@ public class NewTreatmentController {
         Caregiver caregiver = searchInList(p);
     }
 
+    /**
+     * searches in the caregiverlist for the caregiver
+     *
+     * @param surname
+     * @return
+     */
     private Caregiver searchInList(String surname) {
-        for (int i = 0; i<this.caregiverList.size(); i++) {
+        for (int i = 0; i < this.caregiverList.size(); i++) {
             if (this.caregiverList.get(i).getSurname().equals(surname)) {
                 return this.caregiverList.get(i);
             }

@@ -24,6 +24,9 @@ public class MainWindowController {
     @FXML
     private Button btnShowLoginWindow;
 
+    /**
+     * @param e handles the button click event of Patients button
+     */
     @FXML
     private void handleShowAllPatients(ActionEvent e) {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/AllPatientView.fxml"));
@@ -35,6 +38,9 @@ public class MainWindowController {
         AllPatientController controller = loader.getController();
     }
 
+    /**
+     * @param e handles the button click event of Caregivers button
+     */
     @FXML
     private void handleShowAllCaregivers(ActionEvent e) {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/AllCaregiverView.fxml"));
@@ -46,6 +52,9 @@ public class MainWindowController {
         AllCaregiverController controller = loader.getController();
     }
 
+    /**
+     * @param e handles the button click event of Treatments button
+     */
     @FXML
     private void handleShowAllTreatments(ActionEvent e) {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/AllTreatmentView.fxml"));
@@ -57,6 +66,9 @@ public class MainWindowController {
         AllTreatmentController controller = loader.getController();
     }
 
+    /**
+     * @param e handles the button click event of Login button
+     */
     @FXML
     private void handleLoginWindow(ActionEvent e) {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/LoginView.fxml"));

@@ -50,36 +50,23 @@ public class LoginController {
 
     @FXML
     public void handleLogin() {
-
     }
 
 
-    public void loginWindow() {
-        try {
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/LoginView.fxml"));
-            BorderPane pane = loader.load();
-            Scene scene = new Scene(pane);
-            Stage stage = new Stage();
-            LoginController controller = loader.getController();
-
-            stage.setTitle("Login");
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException exception) {
-            // TODO Auto-generated catch block
-            exception.printStackTrace();
-        }
-    }
-
+    /**
+     * Method handles the click on the login button
+     *
+     * @param mouseEvent
+     * @throws NoSuchAlgorithmException
+     */
     public void loginClicked(MouseEvent mouseEvent) throws NoSuchAlgorithmException {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
         if (username != null && password != null) {
             String hashedPassword = HashMD5.HashPassword(password);
-            if (checkLogin(username, hashedPassword)) {
+            if (CheckLogin(username, hashedPassword)) {
                 txtResult.setText("Login erfolgreich.");
-                enableMenuButtons();
+                EnableMenuButtons();
             } else {
                 txtResult.setText("Username/ID oder Passwort nicht korrekt");
             }
@@ -88,13 +75,22 @@ public class LoginController {
         }
     }
 
-    private void enableMenuButtons() {
+    /**
+     * enables the Mainwindow buttons after a successful login
+     */
+    private void EnableMenuButtons() {
         mainWindowController.getBtnShowAllCaregivers().setDisable(false);
         mainWindowController.getBtnShowAllPatients().setDisable(false);
         mainWindowController.getBtnShowAllTreatments().setDisable(false);
     }
 
-    private boolean checkLogin(String username, String hashedPassword) {
+    /**
+     * @param username
+     * @param hashedPassword
+     * @return boolean whether the login is correct
+     * checks if the user has entered correct Name and Password
+     */
+    private boolean CheckLogin(String username, String hashedPassword) {
         List<Caregiver> allCaregiver = null;
 
         try {
@@ -115,6 +111,9 @@ public class LoginController {
         return false;
     }
 
+    /**
+     * @param mainWindowController
+     */
     public void setMainWindowController(MainWindowController mainWindowController) {
         this.mainWindowController = mainWindowController;
     }
