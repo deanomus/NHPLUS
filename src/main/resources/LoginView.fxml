@@ -30,11 +30,10 @@
             </font>
         </Label>
         <TextField fx:id="txtUsername" layoutX="263.0" layoutY="109.0" maxWidth="192.0" prefWidth="150.0"/>
-        <TextField fx:id="txtPassword" layoutX="263.0" layoutY="147.0" maxWidth="192.0" prefWidth="150.0"/>
-        <Button fx:id="btnLogin" layoutX="263.0" layoutY="187.0" mnemonicParsing="false" onAction="#handleLogin"
-                onMouseClicked="#loginClicked" text="Anmelden"/>
-        <Button fx:id="btnCancel" layoutX="338.0" layoutY="187.0" mnemonicParsing="false" onAction="#handleCancel"
-                text="Abbrechen"/>
+        <TextField fx:id="txtPassword" accessibleRole="PASSWORD_FIELD" layoutX="263.0" layoutY="147.0" maxWidth="192.0"
+                   prefWidth="150.0"/>
+        <Button fx:id="btnLogin" layoutX="336.0" layoutY="187.0" mnemonicParsing="false" onAction="#handleLogin"
+                onMouseClicked="#loginClicked" prefHeight="25.0" prefWidth="78.0" text="Anmelden"/>
         <DialogPane layoutX="54.0" layoutY="292.0"/>
         <Label fx:id="txtResult" layoutX="263.0" layoutY="84.0" prefHeight="17.0" prefWidth="260.0"/>
     </children>

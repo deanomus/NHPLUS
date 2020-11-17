@@ -29,8 +29,6 @@ public class LoginController {
     private Label txtResult;
     @FXML
     private Button btnLogin;
-    @FXML
-    private Button btnCancel;
 
     private Main main;
     private CaregiverDAO cDao;
@@ -42,10 +40,6 @@ public class LoginController {
     public void initialize() {
         this.main = main;
         this.cDao = DAOFactory.getDAOFactory().createCaregiverDAO();
-    }
-
-    @FXML
-    public void handleCancel() {
     }
 
     @FXML
