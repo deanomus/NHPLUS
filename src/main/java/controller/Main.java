@@ -19,12 +19,20 @@ public class Main extends Application {
 
     private Stage primaryStage;
 
+    /**
+     * Method is called at the start of the program
+     *
+     * @param primaryStage
+     */
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         mainWindow();
     }
 
+    /**
+     * Initializes the mainwindow
+     */
     public void mainWindow() {
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/MainWindowView.fxml"));
